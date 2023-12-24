@@ -54,6 +54,7 @@ public class WindowUtils {
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Error to make the transparent and dragbale: {0}", e.getMessage());
+            e.printStackTrace();
         }
     }
 }
