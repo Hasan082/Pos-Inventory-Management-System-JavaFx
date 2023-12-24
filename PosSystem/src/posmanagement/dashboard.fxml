@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -132,7 +133,7 @@
                                           <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="92.0" size="5em" />
                                           <Label alignment="TOP_RIGHT" layoutX="140.0" layoutY="8.0" prefHeight="17.0" prefWidth="130.0" styleClass="line-spaceing" stylesheets="@dashboard.css" text="0" textFill="WHITE">
                                              <font>
-                                                <Font name="Avenir Medium" size="35.0" />
+                                                <Font name="Avenir Medium" size="28.0" />
                                              </font>
                                           </Label>
                                           <Label alignment="BOTTOM_RIGHT" layoutX="79.0" layoutY="100.0" prefHeight="27.0" prefWidth="187.0" text="Total Order" textFill="WHITE">
@@ -149,9 +150,9 @@
                                        </styleClass>
                                        <children>
                                           <FontAwesomeIcon fill="WHITE" glyphName="MONEY" layoutX="14.0" layoutY="93.0" size="5em" />
-                                          <Label alignment="TOP_RIGHT" layoutX="140.0" layoutY="8.0" prefHeight="17.0" prefWidth="130.0" styleClass="line-spaceing" stylesheets="@dashboard.css" text="0" textFill="WHITE">
+                                          <Label alignment="TOP_RIGHT" layoutX="87.0" layoutY="8.0" prefHeight="33.0" prefWidth="183.0" styleClass="line-spaceing" stylesheets="@dashboard.css" text="\$0.00" textFill="WHITE">
                                              <font>
-                                                <Font name="Avenir Medium" size="35.0" />
+                                                <Font name="Avenir Medium" size="28.0" />
                                              </font>
                                           </Label>
                                           <Label alignment="BOTTOM_RIGHT" layoutX="91.0" layoutY="100.0" prefHeight="27.0" prefWidth="179.0" text="Total Revenue" textFill="WHITE">
@@ -170,7 +171,7 @@
                                           <FontAwesomeIcon fill="WHITE" glyphName="SHOPPING_CART" layoutX="13.0" layoutY="93.0" size="5em" />
                                           <Label alignment="TOP_RIGHT" layoutX="140.0" layoutY="7.0" prefHeight="17.0" prefWidth="130.0" styleClass="line-spaceing" stylesheets="@dashboard.css" text="0" textFill="WHITE">
                                              <font>
-                                                <Font name="Avenir Medium" size="35.0" />
+                                                <Font name="Avenir Medium" size="28.0" />
                                              </font>
                                           </Label>
                                           <Label alignment="BOTTOM_RIGHT" layoutX="86.0" layoutY="100.0" prefHeight="27.0" prefWidth="179.0" text="Available Product" textFill="#fffefe">
@@ -233,50 +234,56 @@
                                     <String fx:value="white-bg" />
                                  </styleClass>
                                  <children>
-                                    <AnchorPane layoutX="78.0" layoutY="36.0" prefHeight="150.0" prefWidth="130.0" stylesheets="@dashboard.css">
+                                    <AnchorPane layoutX="78.0" layoutY="19.0" prefHeight="150.0" prefWidth="130.0" stylesheets="@dashboard.css">
                                        <children>
-                                          <ImageView fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
-                                          <Button layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Import" />
+                                          <ImageView fx:id="product_img" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Button fx:id="import_img" layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Import" />
                                        </children>
                                        <styleClass>
                                           <String fx:value="white-bg" />
                                           <String fx:value="shadow" />
                                        </styleClass>
                                     </AnchorPane>
-                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="220.0" prefHeight="20.0" prefWidth="88.0" text="Product Id:">
+                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="198.0" prefHeight="20.0" prefWidth="88.0" text="Product Id:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField focusTraversable="false" layoutX="114.0" layoutY="217.0" prefHeight="25.0" prefWidth="172.0" />
-                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="262.0" prefHeight="18.0" prefWidth="88.0" text="Category:">
+                                    <TextField fx:id="product_id" focusTraversable="false" layoutX="114.0" layoutY="195.0" prefHeight="25.0" prefWidth="172.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="239.0" prefHeight="18.0" prefWidth="88.0" text="Category:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox focusTraversable="false" layoutX="115.0" layoutY="259.0" prefHeight="25.0" prefWidth="172.0" promptText="Selecy Category" />
-                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="304.0" prefHeight="20.0" prefWidth="89.0" text="Brand:">
+                                    <ComboBox fx:id="product_cat" focusTraversable="false" layoutX="115.0" layoutY="236.0" prefHeight="25.0" prefWidth="172.0" promptText="Selecy Category" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="280.0" prefHeight="20.0" prefWidth="89.0" text="Brand:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField focusTraversable="false" layoutX="115.0" layoutY="301.0" prefHeight="25.0" prefWidth="172.0" />
-                                    <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="345.0" text="Product Name:">
+                                    <TextField fx:id="product_brand" focusTraversable="false" layoutX="115.0" layoutY="277.0" prefHeight="25.0" prefWidth="172.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="320.0" text="Product Name:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField focusTraversable="false" layoutX="115.0" layoutY="342.0" prefHeight="25.0" prefWidth="172.0" />
-                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="383.0" prefHeight="18.0" prefWidth="88.0" text="Status:">
+                                    <TextField fx:id="product_name" focusTraversable="false" layoutX="115.0" layoutY="317.0" prefHeight="25.0" prefWidth="172.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="357.0" prefHeight="18.0" prefWidth="88.0" text="Status:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox focusTraversable="false" layoutX="114.0" layoutY="381.0" prefHeight="25.0" prefWidth="172.0" promptText="Choose" />
-                                    <Button layoutX="14.0" layoutY="438.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="ADD" />
-                                    <Button layoutX="159.0" layoutY="438.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="UPDATE" />
-                                    <Button layoutX="14.0" layoutY="502.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="RESET" />
-                                    <Button layoutX="159.0" layoutY="502.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="DELTE" />
+                                    <ComboBox fx:id="product_status" focusTraversable="false" layoutX="114.0" layoutY="355.0" prefHeight="25.0" prefWidth="172.0" promptText="Choose" />
+                                    <Button layoutX="14.0" layoutY="456.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="ADD" />
+                                    <Button layoutX="159.0" layoutY="456.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="UPDATE" />
+                                    <Button layoutX="14.0" layoutY="520.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="RESET" />
+                                    <Button layoutX="159.0" layoutY="520.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="DELTE" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="400.0" prefHeight="20.0" prefWidth="89.0" text="Price:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="product_price" focusTraversable="false" layoutX="115.0" layoutY="397.0" prefHeight="25.0" prefWidth="172.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="324.0" layoutY="-5.0" prefHeight="590.0" prefWidth="554.0" stylesheets="@dashboard.css">
@@ -285,13 +292,14 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <TableView layoutX="14.0" layoutY="80.0" prefHeight="501.0" prefWidth="526.0">
+                                    <TableView layoutX="8.0" layoutY="80.0" prefHeight="501.0" prefWidth="540.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="Product Id" />
-                                        <TableColumn prefWidth="102.0" text="Category" />
-                                          <TableColumn prefWidth="101.0" text="Brand" />
-                                          <TableColumn prefWidth="154.0" text="Product Name" />
-                                          <TableColumn prefWidth="91.0" text="Status" />
+                                        <TableColumn prefWidth="63.0" text="Id" />
+                                        <TableColumn prefWidth="92.0" text="Category" />
+                                          <TableColumn prefWidth="84.0" text="Brand" />
+                                          <TableColumn prefWidth="125.0" text="Product Name" />
+                                          <TableColumn prefWidth="90.0" text="Price" />
+                                          <TableColumn prefWidth="82.0" text="Status" />
                                       </columns>
                                     </TableView>
                                     <TextField layoutX="130.0" layoutY="31.0" prefHeight="30.0" prefWidth="407.0" promptText="Search" />
@@ -300,6 +308,88 @@
                                           <Font name="Avenir Next Regular" size="15.0" />
                                        </font>
                                     </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="8.0" layoutY="-4.0" prefHeight="605.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="12.0" layoutY="3.0" prefHeight="594.0" prefWidth="521.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView focusTraversable="false" layoutX="8.0" layoutY="9.0" prefHeight="578.0" prefWidth="503.0">
+                                      <columns>
+                                        <TableColumn prefWidth="90.0" text="Category" />
+                                        <TableColumn prefWidth="108.0" text="Brand" />
+                                          <TableColumn prefWidth="142.0" text="Name" />
+                                          <TableColumn prefWidth="77.0" text="Quantity" />
+                                          <TableColumn prefWidth="97.0" text="Price" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="549.0" layoutY="3.0" prefHeight="594.0" prefWidth="337.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="50.0" prefHeight="25.0" prefWidth="125.0" text="Product  Category:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox layoutX="142.0" layoutY="50.0" prefHeight="25.0" prefWidth="180.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="93.0" prefHeight="25.0" prefWidth="125.0" text="Brand:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox layoutX="142.0" layoutY="93.0" prefHeight="25.0" prefWidth="180.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="135.0" prefHeight="25.0" prefWidth="125.0" text="Product  Name:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox layoutX="142.0" layoutY="135.0" prefHeight="25.0" prefWidth="180.0" />
+                                    <Spinner layoutX="143.0" layoutY="180.0" prefHeight="25.0" prefWidth="180.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="180.0" prefHeight="25.0" prefWidth="125.0" text="Quantity:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="258.0" prefHeight="25.0" prefWidth="125.0" text="Total:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="313.0" prefHeight="25.0" prefWidth="118.0" text="Amount:">
+                                       <font>
+                                          <Font name="Avenir Medium" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="142.0" layoutY="313.0" prefHeight="25.0" prefWidth="180.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="142.0" layoutY="258.0" prefHeight="25.0" prefWidth="122.0" text="\$0.0">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="5.0" layoutY="366.0" prefHeight="25.0" prefWidth="125.0" text="Balance:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="139.0" layoutY="366.0" prefHeight="25.0" prefWidth="122.0" text="\$0.0">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="16.0" layoutY="439.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="130.0" text="Receipt" />
+                                    <Button layoutX="194.0" layoutY="439.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="130.0" text="Pay" />
+                                    <Button layoutX="16.0" layoutY="507.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="130.0" text="Reset" />
                                  </children>
                               </AnchorPane>
                            </children>
