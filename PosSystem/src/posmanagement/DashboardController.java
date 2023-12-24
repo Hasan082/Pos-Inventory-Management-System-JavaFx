@@ -5,12 +5,21 @@
 package posmanagement;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -18,7 +27,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -26,6 +37,10 @@ import javafx.scene.layout.AnchorPane;
  * @author hasan
  */
 public class DashboardController implements Initializable {
+    
+    private static final Logger logger = Logger.getLogger(DashboardController.class.getName());
+    
+    
 
     @FXML
     private Button close;
@@ -182,6 +197,73 @@ public class DashboardController implements Initializable {
 
     @FXML
     private Label username;
+    
+    
+    //ALert Variable =======================
+    Alert alert;
+    
+    //SCENE MOVE VARAIABLE
+    private double x = 0;
+    private double y = 0;
+    
+    
+    //CLOSE FUNCTION======
+    public  void  close() {
+        System.exit(0);
+    }
+    
+    //MINIMIZE FUNCTION====
+    public  void  minimize() {
+        Stage stage = (Stage) main_wrapper.getScene().getWindow();
+        stage.setIconified(true);
+    }
+    
+    //LOGOUT FUNCTION=====
+    public void logout(){
+        try {
+            //IF LOGIN INFO CORRECT, SHOW ALERT===
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("INFORMATION");
+            alert.setHeaderText(null);
+            alert.setContentText("Logout Success!!");
+            Optional<ButtonType> option = alert.showAndWait();
+            
+            if(option.get().equals(ButtonType.OK)){
+                
+                logout.getScene().getWindow().hide(); 
+                
+                Parent root = FXMLLoader.load(getClass().getResource("Start.fxml"));         
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                
+                root.setOnMousePressed((MouseEvent evt) -> {
+                    x = evt.getSceneX();
+                    y = evt.getSceneY();
+                });
+
+                root.setOnMouseDragged((MouseEvent evt)->{
+                    stage.setX(evt.getScreenX() - x);
+                    stage.setY(evt.getScreenY()- y);
+                    stage.setOpacity(0.9);
+                });
+
+                root.setOnMouseReleased((MouseEvent evt)->{
+                    stage.setOpacity(01);
+                });
+                    
+                stage.setScene(scene);
+                stage.show();
+                
+            } else {
+                return;
+            }
+            
+            
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Error connecting to the database: {0}", e.getMessage());
+        }
+    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
