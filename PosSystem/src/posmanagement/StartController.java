@@ -1,7 +1,6 @@
 
 package posmanagement;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -13,14 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import java.sql.*;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import posmanagement.Utils.WindowUtils;
 
 
 public class StartController implements Initializable {
@@ -47,11 +41,7 @@ public class StartController implements Initializable {
         System.exit(0);
     }
     
-    //SCENE MOVE VARAIABLE
-    private double x = 0;
-    private double y = 0;
-    
-    //DATABASE VARAIABLE
+    //DATABASE VARAIABLE========
     private Connection conn;
     private PreparedStatement ps;
     ResultSet result;
@@ -93,34 +83,12 @@ public class StartController implements Initializable {
                     alert.setContentText("Login Success!!");
                     alert.showAndWait();
                     
-                    //CLOSE LOGIN SCREEN
+                    //CLOSE LOGIN SCREEN==========
                     loginBtn.getScene().getWindow().hide(); 
                     
-                    Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
-                    
-                    
-                    root.setOnMousePressed((MouseEvent evt) -> {
-                        x = evt.getSceneX();
-                        y = evt.getSceneY();
-                    });
-
-                    root.setOnMouseDragged((MouseEvent evt)->{
-                        stage.setX(evt.getScreenX() - x);
-                        stage.setY(evt.getScreenY()- y);
-                        stage.setOpacity(0.9);
-                    });
-
-                    root.setOnMouseReleased((MouseEvent evt)->{
-                        stage.setOpacity(01);
-                    });
-                    
-                    stage.initStyle(StageStyle.TRANSPARENT);
-                    
-                    //OPEN DASHBOARD SCREEN
-                    stage.setScene(scene);
-                    stage.show();
+                    //OPEN NEW WINDOW ===========
+                    WindowUtils windowUtils = new WindowUtils();
+                    windowUtils.loadWindow("/posmanagement/dashboard.fxml", "Dashboard");
 
                 } else {
                     
@@ -135,7 +103,7 @@ public class StartController implements Initializable {
             }
             
             
-        } catch (IOException | SQLException e) {
+        } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error connecting to the database: {0}", e.getMessage());
         }
     }

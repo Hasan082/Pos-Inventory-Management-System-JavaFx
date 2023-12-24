@@ -1,21 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package posmanagement;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -27,19 +18,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import posmanagement.Utils.WindowUtils;
 
-/**
- * FXML Controller class
- *
- * @author hasan
- */
-public class DashboardController implements Initializable {
-    
-    private static final Logger logger = Logger.getLogger(DashboardController.class.getName());
-    
+
+public class DashboardController implements Initializable {  
     
 
     @FXML
@@ -201,11 +185,7 @@ public class DashboardController implements Initializable {
     
     //ALert Variable =======================
     Alert alert;
-    
-    //SCENE MOVE VARAIABLE
-    private double x = 0;
-    private double y = 0;
-    
+
     
     //CLOSE FUNCTION======
     public  void  close() {
@@ -220,47 +200,20 @@ public class DashboardController implements Initializable {
     
     //LOGOUT FUNCTION=====
     public void logout(){
-        try {
-            //IF LOGIN INFO CORRECT, SHOW ALERT===
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("INFORMATION");
-            alert.setHeaderText(null);
-            alert.setContentText("Logout Success!!");
-            Optional<ButtonType> option = alert.showAndWait();
+        //IF LOGIN INFO CORRECT, SHOW ALERT===
+        alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("INFORMATION");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to log out?");
+        Optional<ButtonType> option = alert.showAndWait();
+        if(option.get().equals(ButtonType.OK)){
             
-            if(option.get().equals(ButtonType.OK)){
-                
-                logout.getScene().getWindow().hide(); 
-                
-                Parent root = FXMLLoader.load(getClass().getResource("Start.fxml"));         
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-                
-                root.setOnMousePressed((MouseEvent evt) -> {
-                    x = evt.getSceneX();
-                    y = evt.getSceneY();
-                });
-
-                root.setOnMouseDragged((MouseEvent evt)->{
-                    stage.setX(evt.getScreenX() - x);
-                    stage.setY(evt.getScreenY()- y);
-                    stage.setOpacity(0.9);
-                });
-
-                root.setOnMouseReleased((MouseEvent evt)->{
-                    stage.setOpacity(01);
-                });
-                    
-                stage.setScene(scene);
-                stage.show();
-                
-            } else {
-                return;
-            }
+            logout.getScene().getWindow().hide();
             
+            //OPEN NEW WINDOW ===========
+            WindowUtils windowUtils = new WindowUtils();
+            windowUtils.loadWindow("/posmanagement/Start.fxml", "Login");
             
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "Error connecting to the database: {0}", e.getMessage());
         }
     }
     
