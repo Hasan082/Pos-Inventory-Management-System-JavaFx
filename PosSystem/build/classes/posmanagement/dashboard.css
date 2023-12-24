@@ -1,7 +1,5 @@
-/*
- * Empty Stylesheet file.
- */
-
-.mainFxmlClass {
-
+.header-part {
+    -fx-background-color: #fff;
+    -fx-border-color: linear-gradient(to bottom, #03A9F4, #073ABB);
+    -fx-border-width: 0.4px 0.4px 0.2px 0.4px;
 }

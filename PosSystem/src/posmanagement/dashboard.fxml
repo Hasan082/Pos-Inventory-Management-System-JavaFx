@@ -1,20 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label layoutX="93.0" layoutY="54.0" text="WELCOME TO DASHBOARD">
-               <font>
-                  <Font name="System Bold" size="32.0" />
-               </font>
-            </Label>
+            <BorderPane prefHeight="650.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="45.0" prefWidth="200.0" styleClass="header-border" stylesheets="@dashboard.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="102.0" layoutY="-86.0" prefHeight="38.0" prefWidth="1100.0" styleClass="header-part" stylesheets="@dashboard.css" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <FontAwesomeIcon glyphName="TRUCK" layoutX="14.0" layoutY="27.0" size="1.75em" />
+                              <Label layoutX="40.0" layoutY="8.0" text="Codersfly POS Inventory Management System">
+                                 <font>
+                                    <Font name="Avenir Next Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Button contentDisplay="CENTER" focusTraversable="false" layoutX="1064.0" layoutY="4.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="closeBtn" stylesheets="@dashboard.css">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="TIMES" />
+                                 </graphic>
+                              </Button>
+                              <Button focusTraversable="false" layoutX="1025.0" layoutY="4.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="minusBtn" stylesheets="@dashboard.css" textFill="WHITE">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="MINUS" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="-6.0" layoutY="75.0" prefHeight="605.0" prefWidth="200.0" styleClass="left-sidebar" stylesheets="@dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <FontAwesomeIcon fill="#fcfcfc" glyphName="USER" layoutX="69.0" layoutY="94.0" size="6em" />
+                              <Label alignment="CENTER" layoutX="3.0" layoutY="105.0" prefHeight="23.0" prefWidth="197.0" text="Welcome" textFill="WHITE">
+                                 <font>
+                                    <Font name="Avenir Light" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="126.0" prefHeight="29.0" prefWidth="196.0" text="Hasan" textFill="WHITE">
+                                 <font>
+                                    <Font name="Avenir Medium" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="79.0" layoutX="112.0" layoutY="166.0" startX="-100.0" stroke="WHITE" strokeLineCap="ROUND" />
+                              <Button layoutX="11.0" layoutY="202.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="156.0" styleClass="nav-item" stylesheets="@dashboard.css" text=" Home" textFill="#fcfcfc">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="Avenir Next Regular" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="11.0" layoutY="248.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="156.0" styleClass="nav-item" stylesheets="@dashboard.css" text="  Add Products" textFill="#fcfcfc">
+                                 <font>
+                                    <Font name="Avenir Next Regular" size="18.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIcon fill="#fcfcfc" glyphName="PLUS" size="1.5em" />
+                                 </graphic>
+                              </Button>
+                              <Button layoutX="11.0" layoutY="293.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="156.0" styleClass="nav-item" stylesheets="@dashboard.css" text="Order" textFill="#fcfcfc">
+                                 <font>
+                                    <Font name="Avenir Next Regular" size="18.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="CUBE" size="1.5em" wrappingWidth="28.0" />
+                                 </graphic>
+                              </Button>
+                              <Button contentDisplay="CENTER" layoutX="11.0" layoutY="560.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="nav-item" stylesheets="@dashboard.css" textFill="#fcfcfc">
+                                 <font>
+                                    <Font name="Avenir Next Regular" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="12.0" layoutY="547.0" mnemonicParsing="false" styleClass="signout" stylesheets="@dashboard.css" text="Logout" textFill="#f5f5f5">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="#f8f8f8" glyphName="SIGN_OUT" size="2em" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="Avenir Medium" size="16.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="12.0" layoutY="2.0" prefHeight="162.0" prefWidth="876.0" styleClass="white-bg" stylesheets="@dashboard.css" />
+                        <AnchorPane layoutX="12.0" layoutY="175.0" prefHeight="421.0" prefWidth="876.0" styleClass="white-bg" stylesheets="@dashboard.css" />
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
          </children>
       </AnchorPane>
    </children>
