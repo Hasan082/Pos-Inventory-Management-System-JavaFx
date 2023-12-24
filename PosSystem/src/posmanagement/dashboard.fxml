@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -43,7 +51,7 @@
                <left>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="-6.0" layoutY="75.0" prefHeight="605.0" prefWidth="200.0" styleClass="left-sidebar" stylesheets="@dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane layoutX="-6.0" layoutY="75.0" prefHeight="605.0" prefWidth="200.0" styleClass="gradient-bg" stylesheets="@dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <FontAwesomeIcon fill="#fcfcfc" glyphName="USER" layoutX="69.0" layoutY="94.0" size="6em" />
                               <Label alignment="CENTER" layoutX="3.0" layoutY="105.0" prefHeight="23.0" prefWidth="197.0" text="Welcome" textFill="WHITE">
@@ -93,6 +101,9 @@
                                  <font>
                                     <Font name="Avenir Medium" size="16.0" />
                                  </font>
+                                 <effect>
+                                    <DropShadow height="6.17" radius="1.1025" spread="0.02" width="0.24" />
+                                 </effect>
                               </Button>
                            </children>
                         </AnchorPane>
@@ -100,10 +111,180 @@
                   </AnchorPane>
                </left>
                <center>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <AnchorPane BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="12.0" layoutY="2.0" prefHeight="162.0" prefWidth="876.0" styleClass="white-bg" stylesheets="@dashboard.css" />
-                        <AnchorPane layoutX="12.0" layoutY="175.0" prefHeight="421.0" prefWidth="876.0" styleClass="white-bg" stylesheets="@dashboard.css" />
+                        <AnchorPane layoutY="3.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <AnchorPane layoutX="12.0" layoutY="2.0" prefHeight="150.0" prefWidth="876.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="9.0" layoutY="6.0" prefHeight="138.0" prefWidth="280.0" stylesheets="@dashboard.css">
+                                       <styleClass>
+                                          <String fx:value="card-1" />
+                                          <String fx:value="background-radius" />
+                                       </styleClass>
+                                       <children>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="92.0" size="5em" />
+                                          <Label alignment="TOP_RIGHT" layoutX="140.0" layoutY="8.0" prefHeight="17.0" prefWidth="130.0" styleClass="line-spaceing" stylesheets="@dashboard.css" text="0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Avenir Medium" size="35.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="BOTTOM_RIGHT" layoutX="79.0" layoutY="100.0" prefHeight="27.0" prefWidth="187.0" text="Total Order" textFill="WHITE">
+                                             <font>
+                                                <Font name="Avenir Next Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="298.0" layoutY="6.0" prefHeight="138.0" prefWidth="280.0" stylesheets="@dashboard.css">
+                                       <styleClass>
+                                          <String fx:value="card-2" />
+                                          <String fx:value="background-radius" />
+                                       </styleClass>
+                                       <children>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="MONEY" layoutX="14.0" layoutY="93.0" size="5em" />
+                                          <Label alignment="TOP_RIGHT" layoutX="140.0" layoutY="8.0" prefHeight="17.0" prefWidth="130.0" styleClass="line-spaceing" stylesheets="@dashboard.css" text="0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Avenir Medium" size="35.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="BOTTOM_RIGHT" layoutX="91.0" layoutY="100.0" prefHeight="27.0" prefWidth="179.0" text="Total Revenue" textFill="WHITE">
+                                             <font>
+                                                <Font name="Avenir Next Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="586.0" layoutY="6.0" prefHeight="138.0" prefWidth="280.0" stylesheets="@dashboard.css">
+                                       <styleClass>
+                                          <String fx:value="card-3" />
+                                          <String fx:value="background-radius" />
+                                       </styleClass>
+                                       <children>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="SHOPPING_CART" layoutX="13.0" layoutY="93.0" size="5em" />
+                                          <Label alignment="TOP_RIGHT" layoutX="140.0" layoutY="7.0" prefHeight="17.0" prefWidth="130.0" styleClass="line-spaceing" stylesheets="@dashboard.css" text="0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Avenir Medium" size="35.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="BOTTOM_RIGHT" layoutX="86.0" layoutY="100.0" prefHeight="27.0" prefWidth="179.0" text="Available Product" textFill="#fffefe">
+                                             <font>
+                                                <Font name="Avenir Next Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="12.0" layoutY="171.0" prefHeight="425.0" prefWidth="876.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="11.0" layoutY="12.0" prefHeight="402.0" prefWidth="503.0" stylesheets="@dashboard.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <BarChart layoutX="-11.0" layoutY="-20.0" prefHeight="402.0" prefWidth="503.0" title="Earnings Snapshot" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </BarChart>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="529.0" layoutY="12.0" prefHeight="402.0" prefWidth="334.0" stylesheets="@dashboard.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <BarChart barGap="2.0" layoutX="-1.0" layoutY="2.0" prefHeight="402.0" prefWidth="354.0" title="Order Insights" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="2.0">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </BarChart>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <Line endX="773.0" layoutX="113.0" layoutY="162.0" startX="-100.0" stroke="#03a9f4" strokeWidth="0.8" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="8.0" layoutY="7.0">
+                           <children>
+                              <AnchorPane layoutX="8.0" layoutY="-5.0" prefHeight="590.0" prefWidth="300.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="white-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="78.0" layoutY="36.0" prefHeight="150.0" prefWidth="130.0" stylesheets="@dashboard.css">
+                                       <children>
+                                          <ImageView fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Button layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Import" />
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="220.0" prefHeight="20.0" prefWidth="88.0" text="Product Id:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField focusTraversable="false" layoutX="114.0" layoutY="217.0" prefHeight="25.0" prefWidth="172.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="262.0" prefHeight="18.0" prefWidth="88.0" text="Category:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox focusTraversable="false" layoutX="115.0" layoutY="259.0" prefHeight="25.0" prefWidth="172.0" promptText="Selecy Category" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="304.0" prefHeight="20.0" prefWidth="89.0" text="Brand:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField focusTraversable="false" layoutX="115.0" layoutY="301.0" prefHeight="25.0" prefWidth="172.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="345.0" text="Product Name:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField focusTraversable="false" layoutX="115.0" layoutY="342.0" prefHeight="25.0" prefWidth="172.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="383.0" prefHeight="18.0" prefWidth="88.0" text="Status:">
+                                       <font>
+                                          <Font name="Avenir Next Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox focusTraversable="false" layoutX="114.0" layoutY="381.0" prefHeight="25.0" prefWidth="172.0" promptText="Selecy Category" />
+                                    <Button layoutX="14.0" layoutY="438.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="ADD" />
+                                    <Button layoutX="159.0" layoutY="438.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="UPDATE" />
+                                    <Button layoutX="14.0" layoutY="502.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="RESET" />
+                                    <Button layoutX="159.0" layoutY="502.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="DELTE" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="324.0" layoutY="-5.0" prefHeight="590.0" prefWidth="554.0" stylesheets="@dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </center>
