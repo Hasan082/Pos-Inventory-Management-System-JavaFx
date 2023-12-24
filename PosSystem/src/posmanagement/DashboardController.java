@@ -5,6 +5,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -202,12 +203,13 @@ public class DashboardController implements Initializable {
     public void logout(){
         //IF LOGIN INFO CORRECT, SHOW ALERT===
         alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("INFORMATION");
+        alert.setTitle("CONFIRMATION");
         alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to log out?");
         Optional<ButtonType> option = alert.showAndWait();
         if(option.get().equals(ButtonType.OK)){
             
+            //HIDE THE DASHBORD AND RETURN TO LOGIN SCREN=====
             logout.getScene().getWindow().hide();
             
             //OPEN NEW WINDOW ===========
@@ -216,6 +218,24 @@ public class DashboardController implements Initializable {
             
         }
     }
+    
+    
+    public void switchScreen(ActionEvent evt){
+        if(evt.getSource() == nav_dash){
+            section_dashboard.setVisible(true);
+            section_addProduct.setVisible(false);
+            section_order.setVisible(false);
+        }else if(evt.getSource() == nav_add_prod) {
+            section_addProduct.setVisible(true);
+            section_dashboard.setVisible(false);            
+            section_order.setVisible(false);
+        }else if(evt.getSource() == nav_ordera) {
+            section_order.setVisible(true);
+            section_addProduct.setVisible(false);
+            section_dashboard.setVisible(false);            
+        } 
+    }
+
     
     
     @Override

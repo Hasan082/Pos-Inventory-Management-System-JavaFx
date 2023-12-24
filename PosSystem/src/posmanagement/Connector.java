@@ -25,7 +25,6 @@ public class Connector {
             return  conn;
         } catch(SQLException e) {
             logger.log(Level.SEVERE, "Error connecting to the database: {0}", e.getMessage());
-            e.printStackTrace();
             return  null;
         }        
     }

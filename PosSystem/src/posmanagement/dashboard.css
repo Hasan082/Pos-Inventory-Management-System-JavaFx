@@ -45,7 +45,6 @@
 .nav-item {
     -fx-background-color: transparent;
     -fx-alignment: CENTER-LEFT;
-    -fx-padding: 0 0 0 0;
 }
 
 .signout {
@@ -80,10 +79,10 @@
 
 }
 
-
 .card-3 {
     -fx-background-color: linear-gradient(to bottom right, #2196F3, #0D47A1);
 }
+
 .line-spaceing {
     -fx-padding: -7 0 0 0;
 }

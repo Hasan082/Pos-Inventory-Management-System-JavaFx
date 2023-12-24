@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 
 public class WindowUtils {
-    
+
     private static final Logger logger = Logger.getLogger(WindowUtils.class.getName());
 
     private double x = 0;
@@ -20,8 +20,8 @@ public class WindowUtils {
 
     public void loadWindow(String fxmlPath, String title) {
         try {
-
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
 
             Stage stage = new Stage();
             Scene scene = new Scene(root);
@@ -48,13 +48,16 @@ public class WindowUtils {
             // Set the window title
             stage.setTitle(title);
 
+            // Set the controller if needed
+            // MyController controller = loader.getController();
+            // controller.initData(data);
+
             // Open the window
             stage.setScene(scene);
             stage.show();
 
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "Error to make the transparent and dragbale: {0}", e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error loading FXML file: {0}", e.getMessage());
         }
     }
 }
