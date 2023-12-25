@@ -183,6 +183,8 @@ public class DashboardController implements Initializable {
     @FXML
     private Label username;
     
+    @FXML
+    private Button order_inv_add;
     
     //ALert Variable =======================
     Alert alert;
@@ -219,24 +221,43 @@ public class DashboardController implements Initializable {
         }
     }
     
-    
+    //SCREEN SWITCHER FUNCTION=================================
     public void switchScreen(ActionEvent evt){
         if(evt.getSource() == nav_dash){
             section_dashboard.setVisible(true);
             section_addProduct.setVisible(false);
             section_order.setVisible(false);
+            
+            //MAKE ACTIVE SELECTED===
+            nav_dash.setStyle("-fx-background-color:linear-gradient(to right, #03A9F4, #073ABB);");
+            //MAKE OTHER TRANSPARENT====
+            nav_add_prod.setStyle("-fx-background-color: transparent");
+            nav_order.setStyle("-fx-background-color: transparent");
+            
         }else if(evt.getSource() == nav_add_prod) {
             section_addProduct.setVisible(true);
             section_dashboard.setVisible(false);            
             section_order.setVisible(false);
-        }else if(evt.getSource() == nav_ordera) {
+            
+            //MAKE ACTIVE SELECTED===
+            nav_add_prod.setStyle("-fx-background-color:linear-gradient(to right, #03A9F4, #073ABB);");
+            //MAKE OTHER TRANSPARENT====
+            nav_dash.setStyle("-fx-background-color: transparent");
+            nav_order.setStyle("-fx-background-color: transparent");
+            
+        }else if(evt.getSource() == nav_order) {
             section_order.setVisible(true);
             section_addProduct.setVisible(false);
-            section_dashboard.setVisible(false);            
+            section_dashboard.setVisible(false);
+            
+            nav_order.setStyle("-fx-background-color:linear-gradient(to right, #03A9F4, #073ABB);");
+            //MAKE OTHER TRANSPARENT====
+            nav_add_prod.setStyle("-fx-background-color: transparent");
+            nav_dash.setStyle("-fx-background-color: transparent");
+            
         } 
     }
 
-    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

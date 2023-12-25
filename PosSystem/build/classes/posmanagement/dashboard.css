@@ -45,8 +45,12 @@
 .nav-item {
     -fx-background-color: transparent;
     -fx-alignment: CENTER-LEFT;
+    -fx-padding: 0 10px 0 10px;
+    -fx-cursor: hand;
 }
-
+.active {
+    -fx-background-color:linear-gradient(to right, #03A9F4, #073ABB)
+}
 .signout {
     -fx-background-color: #2D78D7;
     -fx-alignment: CENTER-LEFT;
@@ -85,4 +89,67 @@
 
 .line-spaceing {
     -fx-padding: -7 0 0 0;
+}
+
+.textfiled {
+    -fx-background-color:linear-gradient(to bottom, #efefef, #eeeeee);
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 4px;
+    -fx-border-width: .5px;
+    -fx-transition-duration: 0.3s;
+    -fx-transition-timing-function: linear;
+}
+
+.textfiled:focused {
+    -fx-border-color:linear-gradient(to bottom, #03A9F4, #073ABB);
+    -fx-background-color:#ffffff;
+    -fx-border-width: .5px;
+}
+
+.import-btn {
+    -fx-background-color: #eeeeee;
+    -fx-text-fill: red;
+    -fx-cursor: hand;
+}
+
+
+.design-btn {
+    -fx-border-color: transparent;
+    -fx-background-color: linear-gradient(to right, #2196F3, #0D47A1);
+    -fx-transition-duration: 0.3s;
+    -fx-transition-timing-function: linear;
+    -fx-cursor: hand;
+    -fx-text-fill: #ffffff;
+     -fx-border-radius: 4px;
+}
+
+.design-btn:hover {
+    -fx-border-color:linear-gradient(to right, #2196F3, #0D47A1);
+    -fx-background-color:transparent;
+    -fx-text-fill: #0D47A1;
+}
+
+
+.table-view {
+    -fx-border-color: linear-gradient(to right, #2196F3, #0D47A1);
+    -fx-background-color:linear-gradient(to bottom, #efefef, #eeeeee);
+    -fx-padding: 0;
+    -fx-text-fill: #ffffff;
+     -fx-border-radius: 6px;
+     -fx-border-widthL: 2px;
+}
+
+.table-view .column-header-background {
+     -fx-background-color:linear-gradient(to right, #2196F3, #0D47A1);
+     -fx-background-radius: 6px 6px 0 0;
+}
+.table-view .column-header, filter {
+     -fx-background-color: transparent;
+     -fx-size: 40px;
+     -fx-fill-color: #fff;
+}
+
+
+.table-view .column-header .label {
+    -fx-text-fill: #ffffff
 }

@@ -67,26 +67,30 @@
                                     <Font name="Avenir Medium" size="24.0" />
                                  </font>
                               </Label>
-                              <Line endX="79.0" layoutX="112.0" layoutY="166.0" startX="-100.0" stroke="WHITE" strokeLineCap="ROUND" />
-                              <Button fx:id="nav_dash" layoutX="11.0" layoutY="202.0" mnemonicParsing="false" onAction="#switchScreen" prefHeight="39.0" prefWidth="156.0" styleClass="nav-item" stylesheets="@dashboard.css" text="Dahsboard" textFill="#fcfcfc">
+                              <Line endX="79.0" layoutX="110.0" layoutY="166.0" startX="-100.0" stroke="WHITE" strokeLineCap="ROUND" />
+                              <Button fx:id="nav_dash" layoutX="10.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchScreen" prefHeight="40.0" prefWidth="177.0" stylesheets="@dashboard.css" text=" Dahsboard" textFill="#fcfcfc">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
                                  </graphic>
                                  <font>
-                                    <Font name="Avenir Next Regular" size="18.0" />
+                                    <Font name="Avenir Next Regular" size="16.0" />
                                  </font>
+                                 <styleClass>
+                                    <String fx:value="nav-item" />
+                                    <String fx:value="active" />
+                                 </styleClass>
                               </Button>
-                              <Button fx:id="nav_add_prod" layoutX="11.0" layoutY="248.0" mnemonicParsing="false" onAction="#switchScreen" prefHeight="39.0" prefWidth="156.0" styleClass="nav-item" stylesheets="@dashboard.css" text="  Add Products" textFill="#fcfcfc">
+                              <Button fx:id="nav_add_prod" layoutX="10.0" layoutY="250.0" mnemonicParsing="false" onAction="#switchScreen" prefHeight="40.0" prefWidth="177.0" styleClass="nav-item" stylesheets="@dashboard.css" text="  Add Products" textFill="#fcfcfc">
                                  <font>
-                                    <Font name="Avenir Next Regular" size="18.0" />
+                                    <Font name="Avenir Next Regular" size="16.0" />
                                  </font>
                                  <graphic>
                                     <FontAwesomeIcon fill="#fcfcfc" glyphName="PLUS" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="nav_order" layoutX="11.0" layoutY="293.0" mnemonicParsing="false" onAction="#switchScreen" prefHeight="39.0" prefWidth="156.0" styleClass="nav-item" stylesheets="@dashboard.css" text="Order" textFill="#fcfcfc">
+                              <Button fx:id="nav_order" layoutX="10.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchScreen" prefHeight="40.0" prefWidth="177.0" styleClass="nav-item" stylesheets="@dashboard.css" text="Order" textFill="#fcfcfc">
                                  <font>
-                                    <Font name="Avenir Next Regular" size="18.0" />
+                                    <Font name="Avenir Next Regular" size="16.0" />
                                  </font>
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="CUBE" size="1.5em" wrappingWidth="28.0" />
@@ -116,7 +120,7 @@
                <center>
                   <AnchorPane BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="section_dashboard" layoutY="3.0" prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane fx:id="section_dashboard" layoutY="3.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                            <children>
                               <AnchorPane layoutX="12.0" layoutY="2.0" prefHeight="150.0" prefWidth="876.0" stylesheets="@dashboard.css">
                                  <styleClass>
@@ -226,7 +230,7 @@
                               <Line endX="773.0" layoutX="113.0" layoutY="162.0" startX="-100.0" stroke="#03a9f4" strokeWidth="0.8" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="section_addProduct" layoutX="8.0" layoutY="7.0" visible="false">
+                        <AnchorPane fx:id="section_addProduct" layoutX="8.0" layoutY="7.0">
                            <children>
                               <AnchorPane layoutX="8.0" layoutY="-5.0" prefHeight="590.0" prefWidth="300.0" stylesheets="@dashboard.css">
                                  <styleClass>
@@ -237,7 +241,10 @@
                                     <AnchorPane layoutX="78.0" layoutY="19.0" prefHeight="150.0" prefWidth="130.0" stylesheets="@dashboard.css">
                                        <children>
                                           <ImageView fx:id="product_img" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
-                                          <Button fx:id="import_img" layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Import" />
+                                          <Button fx:id="import_img" layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" styleClass="import-btn" stylesheets="@dashboard.css" text="Import">
+                                             <font>
+                                                <Font name="Avenir Next Regular" size="14.0" />
+                                             </font></Button>
                                        </children>
                                        <styleClass>
                                           <String fx:value="white-bg" />
@@ -249,41 +256,41 @@
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="product_id" focusTraversable="false" layoutX="114.0" layoutY="195.0" prefHeight="25.0" prefWidth="172.0" />
+                                    <TextField fx:id="product_id" focusTraversable="false" layoutX="114.0" layoutY="195.0" prefHeight="25.0" prefWidth="172.0" styleClass="textfiled" stylesheets="@dashboard.css" />
                                     <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="239.0" prefHeight="18.0" prefWidth="88.0" text="Category:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="product_cat" focusTraversable="false" layoutX="115.0" layoutY="236.0" prefHeight="25.0" prefWidth="172.0" promptText="Selecy Category" />
+                                    <ComboBox fx:id="product_cat" focusTraversable="false" layoutX="115.0" layoutY="236.0" prefHeight="25.0" prefWidth="172.0" promptText="Selecy Category" styleClass="textfiled" stylesheets="@dashboard.css" />
                                     <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="280.0" prefHeight="20.0" prefWidth="89.0" text="Brand:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="product_brand" focusTraversable="false" layoutX="115.0" layoutY="277.0" prefHeight="25.0" prefWidth="172.0" />
+                                    <TextField fx:id="product_brand" focusTraversable="false" layoutX="115.0" layoutY="277.0" prefHeight="25.0" prefWidth="172.0" styleClass="textfiled" stylesheets="@dashboard.css" />
                                     <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="320.0" text="Product Name:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="product_name" focusTraversable="false" layoutX="115.0" layoutY="317.0" prefHeight="25.0" prefWidth="172.0" />
-                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="357.0" prefHeight="18.0" prefWidth="88.0" text="Status:">
+                                    <TextField fx:id="product_name" focusTraversable="false" layoutX="115.0" layoutY="317.0" prefHeight="25.0" prefWidth="172.0" styleClass="textfiled" stylesheets="@dashboard.css" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="359.0" prefHeight="18.0" prefWidth="88.0" text="Status:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="product_status" focusTraversable="false" layoutX="114.0" layoutY="355.0" prefHeight="25.0" prefWidth="172.0" promptText="Choose" />
-                                    <Button fx:id="prod_add_btn" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="ADD" />
-                                    <Button fx:id="prod_update_btn" layoutX="159.0" layoutY="456.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="UPDATE" />
-                                    <Button fx:id="prod_reset_btn" layoutX="14.0" layoutY="520.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="RESET" />
-                                    <Button fx:id="prod_detete_btn" layoutX="159.0" layoutY="520.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" text="DELTE" />
+                                    <ComboBox fx:id="product_status" focusTraversable="false" layoutX="114.0" layoutY="357.0" prefHeight="25.0" prefWidth="172.0" promptText="Choose" styleClass="textfiled" stylesheets="@dashboard.css" />
+                                    <Button fx:id="prod_add_btn" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" styleClass="design-btn" stylesheets="@dashboard.css" text="ADD" />
+                                    <Button fx:id="prod_update_btn" layoutX="159.0" layoutY="456.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" styleClass="design-btn" stylesheets="@dashboard.css" text="UPDATE" />
+                                    <Button fx:id="prod_reset_btn" layoutX="14.0" layoutY="520.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" styleClass="design-btn" stylesheets="@dashboard.css" text="RESET" />
+                                    <Button fx:id="prod_detete_btn" layoutX="159.0" layoutY="520.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" styleClass="design-btn" stylesheets="@dashboard.css" text="DELTE" />
                                     <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="400.0" prefHeight="20.0" prefWidth="89.0" text="Price:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="product_price" focusTraversable="false" layoutX="115.0" layoutY="397.0" prefHeight="25.0" prefWidth="172.0" />
+                                    <TextField fx:id="product_price" focusTraversable="false" layoutX="115.0" layoutY="397.0" prefHeight="25.0" prefWidth="172.0" styleClass="textfiled" stylesheets="@dashboard.css" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="324.0" layoutY="-5.0" prefHeight="590.0" prefWidth="554.0" stylesheets="@dashboard.css">
@@ -292,7 +299,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="product_show_table" layoutX="8.0" layoutY="80.0" prefHeight="501.0" prefWidth="540.0">
+                                    <TableView fx:id="product_show_table" layoutX="7.0" layoutY="80.0" prefHeight="501.0" prefWidth="540.0" stylesheets="@dashboard.css">
                                       <columns>
                                         <TableColumn fx:id="prod_table_id" prefWidth="63.0" text="Id" />
                                         <TableColumn fx:id="prod_table_cat" prefWidth="92.0" text="Category" />
@@ -302,7 +309,7 @@
                                           <TableColumn fx:id="prod_table_status" prefWidth="82.0" text="Status" />
                                       </columns>
                                     </TableView>
-                                    <TextField fx:id="product_search" layoutX="130.0" layoutY="31.0" prefHeight="30.0" prefWidth="407.0" promptText="Search" />
+                                    <TextField fx:id="product_search" layoutX="130.0" layoutY="31.0" prefHeight="30.0" prefWidth="407.0" promptText="Search" styleClass="textfiled" stylesheets="@dashboard.css" />
                                     <Label layoutX="14.0" layoutY="31.0" prefHeight="30.0" prefWidth="116.0" text="Search Product:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="15.0" />
@@ -342,54 +349,55 @@
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="order_inv_cat" layoutX="142.0" layoutY="50.0" prefHeight="25.0" prefWidth="180.0" />
+                                    <ComboBox fx:id="order_inv_cat" layoutX="142.0" layoutY="50.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfiled" stylesheets="@dashboard.css" />
                                     <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="93.0" prefHeight="25.0" prefWidth="125.0" text="Brand:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="order_inv_brand" layoutX="142.0" layoutY="93.0" prefHeight="25.0" prefWidth="180.0" />
+                                    <ComboBox fx:id="order_inv_brand" layoutX="142.0" layoutY="93.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfiled" stylesheets="@dashboard.css" />
                                     <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="135.0" prefHeight="25.0" prefWidth="125.0" text="Product  Name:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="order_inv_name" layoutX="142.0" layoutY="135.0" prefHeight="25.0" prefWidth="180.0" />
-                                    <Spinner fx:id="order_inv_qty" layoutX="143.0" layoutY="180.0" prefHeight="25.0" prefWidth="180.0" />
+                                    <ComboBox fx:id="order_inv_name" layoutX="142.0" layoutY="135.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfiled" stylesheets="@dashboard.css" />
+                                    <Spinner fx:id="order_inv_qty" layoutX="143.0" layoutY="180.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfiled" stylesheets="@dashboard.css" />
                                     <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="180.0" prefHeight="25.0" prefWidth="125.0" text="Quantity:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="258.0" prefHeight="25.0" prefWidth="125.0" text="Total:">
+                                    <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="314.0" prefHeight="25.0" prefWidth="125.0" text="Total:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="313.0" prefHeight="25.0" prefWidth="118.0" text="Amount:">
+                                    <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="352.0" prefHeight="25.0" prefWidth="118.0" text="Amount:">
                                        <font>
                                           <Font name="Avenir Medium" size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="order_inv_amount" layoutX="142.0" layoutY="313.0" prefHeight="25.0" prefWidth="180.0" />
-                                    <Label fx:id="order_inv_total" alignment="CENTER_RIGHT" layoutX="142.0" layoutY="258.0" prefHeight="25.0" prefWidth="122.0" text="\$0.0">
+                                    <TextField fx:id="order_inv_amount" layoutX="142.0" layoutY="352.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfiled" stylesheets="@dashboard.css" />
+                                    <Label fx:id="order_inv_total" alignment="CENTER_RIGHT" layoutX="142.0" layoutY="314.0" prefHeight="25.0" prefWidth="122.0" text="\$0.0">
                                        <font>
                                           <Font name="Avenir Next Regular" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="5.0" layoutY="366.0" prefHeight="25.0" prefWidth="125.0" text="Balance:">
+                                    <Label alignment="CENTER_RIGHT" layoutX="5.0" layoutY="392.0" prefHeight="25.0" prefWidth="125.0" text="Balance:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="order_inv_balance" alignment="CENTER_RIGHT" layoutX="139.0" layoutY="366.0" prefHeight="25.0" prefWidth="122.0" text="\$0.0">
+                                    <Label fx:id="order_inv_balance" alignment="CENTER_RIGHT" layoutX="139.0" layoutY="392.0" prefHeight="25.0" prefWidth="122.0" text="\$0.0">
                                        <font>
                                           <Font name="Avenir Next Regular" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="order_inv_balance_btn" layoutX="16.0" layoutY="439.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="130.0" text="Receipt" />
-                                    <Button fx:id="order_inv_pay_btn" layoutX="194.0" layoutY="439.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="130.0" text="Pay" />
-                                    <Button fx:id="order_inv_reset_btn" layoutX="16.0" layoutY="507.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="130.0" text="Reset" />
+                                    <Button fx:id="order_inv_add" layoutX="192.0" layoutY="225.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="130.0" styleClass="design-btn" stylesheets="@dashboard.css" text="Add" />
+                                    <Button fx:id="order_inv_balance_btn" layoutX="16.0" layoutY="450.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="130.0" styleClass="design-btn" stylesheets="@dashboard.css" text="Receipt" />
+                                    <Button fx:id="order_inv_pay_btn" layoutX="194.0" layoutY="450.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="130.0" styleClass="design-btn" stylesheets="@dashboard.css" text="Pay" />
+                                    <Button fx:id="order_inv_reset_btn" layoutX="16.0" layoutY="518.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="130.0" styleClass="design-btn" stylesheets="@dashboard.css" text="Reset" />
                                  </children>
                               </AnchorPane>
                            </children>
