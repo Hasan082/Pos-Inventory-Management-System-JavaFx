@@ -1,6 +1,7 @@
 
 package posmanagement;
 
+import posmanagement.DatabaseHelper.Connector;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.io.File;
 import java.net.URL;

@@ -1,5 +1,5 @@
 
-package posmanagement;
+package posmanagement.DatabaseHelper;
 
 
 import java.sql.*;

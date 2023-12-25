@@ -1,6 +1,7 @@
 
 package posmanagement;
 
+import posmanagement.DatabaseHelper.Connector;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
