@@ -112,6 +112,9 @@
     -fx-cursor: hand;
 }
 
+.cover-image {
+    -fx-background-size: cover;
+}
 
 .design-btn {
     -fx-border-color: transparent;
@@ -153,3 +156,4 @@
 .table-view .column-header .label {
     -fx-text-fill: #ffffff
 }
+

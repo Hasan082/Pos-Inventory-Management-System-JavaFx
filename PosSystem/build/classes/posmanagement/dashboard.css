@@ -112,6 +112,9 @@
     -fx-cursor: hand;
 }
 
+.cover-image {
+    -fx-background-size: cover;
+}
 
 .design-btn {
     -fx-border-color: transparent;
@@ -120,7 +123,7 @@
     -fx-transition-timing-function: linear;
     -fx-cursor: hand;
     -fx-text-fill: #ffffff;
-     -fx-border-radius: 4px;
+    -fx-border-radius: 4px;
 }
 
 .design-btn:hover {
@@ -135,21 +138,22 @@
     -fx-background-color:linear-gradient(to bottom, #efefef, #eeeeee);
     -fx-padding: 0;
     -fx-text-fill: #ffffff;
-     -fx-border-radius: 6px;
-     -fx-border-widthL: 2px;
+    -fx-border-radius: 6px;
+    -fx-border-width: 2px;
 }
 
 .table-view .column-header-background {
-     -fx-background-color:linear-gradient(to right, #2196F3, #0D47A1);
-     -fx-background-radius: 6px 6px 0 0;
+    -fx-background-color:linear-gradient(to right, #2196F3, #0D47A1);
+    -fx-background-radius: 6px 6px 0 0;
 }
 .table-view .column-header, filter {
-     -fx-background-color: transparent;
-     -fx-size: 40px;
-     -fx-fill-color: #fff;
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+    -fx-fill-color: #fff;
 }
 
 
 .table-view .column-header .label {
     -fx-text-fill: #ffffff
 }
+

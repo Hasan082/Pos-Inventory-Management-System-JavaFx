@@ -2,6 +2,7 @@
 package posmanagement;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,10 +28,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import posmanagement.Model.GetData;
 import posmanagement.Model.ProductData;
+import posmanagement.Utils.ImageCropUtils;
 import posmanagement.Utils.WindowUtils;
 
 
@@ -197,15 +203,48 @@ public class DashboardController implements Initializable {
     @FXML
     private Button order_inv_add;
     
-    //ALert Variable =======================
-    Alert alert;
-
- 
     
     //OBERSRVALE PRODUCT DATA LIST=========
     private Connection conn;
     private PreparedStatement ps;
     ResultSet result;
+    
+    //ALert Variable=======================
+    Alert alert;
+    //CRTEATE IMAGE VARIABLE====
+    Image image;
+
+    //ADD PRODUCT DATA TO DATABASE======   
+    public void addProductToDataBase(){
+        String sqlInsert = "INSERT INTO productdb (product_id, category, brand, product_name, price, status, image, date)";
+    }
+    
+    //IMAGE IMPORT AND SET FUNCTION============
+    public void importProductImage(){
+        
+        FileChooser open = new FileChooser();
+        open.setTitle("Open Image");
+        open.getExtensionFilters().add(new ExtensionFilter("Image Files", "*.jpg", "*.png", "*.jpeg"));
+        
+        File file = open.showOpenDialog(section_addProduct.getScene().getWindow());
+        
+        if(file != null){
+            
+            GetData.imagePath = file.getAbsolutePath();
+            
+            
+            try {
+                image = new Image(file.toURI().toString(), 130, 150, false, true);
+                product_img.setImage(image);
+//                ImageCropUtils.resizeAndCropImage(product_img, image, 130, 150);
+                } catch (Exception e) {
+                    logger.log(Level.SEVERE, "", e);
+                }
+
+            }
+
+    }
+    
 
     
     public ObservableList<ProductData> addProductListData(){

@@ -241,7 +241,7 @@
                                     <AnchorPane layoutX="78.0" layoutY="19.0" prefHeight="150.0" prefWidth="130.0" stylesheets="@dashboard.css">
                                        <children>
                                           <ImageView fx:id="product_img" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
-                                          <Button fx:id="import_img" layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" styleClass="import-btn" stylesheets="@dashboard.css" text="Import">
+                                          <Button fx:id="import_img" layoutY="125.0" mnemonicParsing="false" onAction="#importProductImage" prefHeight="25.0" prefWidth="130.0" styleClass="import-btn" stylesheets="@dashboard.css" text="Import">
                                              <font>
                                                 <Font name="Avenir Next Regular" size="14.0" />
                                              </font></Button>
@@ -299,7 +299,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="product_show_table" layoutX="8.0" layoutY="80.0" prefHeight="501.0" prefWidth="540.0" stylesheets="@dashboard.css">
+                                    <TableView fx:id="product_show_table" layoutX="7.0" layoutY="80.0" prefHeight="501.0" prefWidth="540.0" stylesheets="@dashboard.css">
                                       <columns>
                                         <TableColumn fx:id="prod_table_id" prefWidth="63.0" text="Id" />
                                         <TableColumn fx:id="prod_table_cat" prefWidth="92.0" text="Category" />
