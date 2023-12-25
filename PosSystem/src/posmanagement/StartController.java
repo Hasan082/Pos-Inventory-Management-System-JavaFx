@@ -13,7 +13,7 @@ import java.sql.*;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import posmanagement.Utils.AlertUtils;
 import posmanagement.Utils.WindowUtils;
 
 
@@ -66,22 +66,13 @@ public class StartController implements Initializable {
             
             
             if(userName.isEmpty() || passWord.isEmpty()){
-                
-                alert = new Alert(AlertType.ERROR);
-                alert.setTitle("ERROR MESSAGE");
-                alert.setHeaderText(null);
-                alert.setContentText("Fill All Field");
-                alert.showAndWait();
+                //SHOW ALERT FOR MISSING FILED====
+                AlertUtils.showAlert(Alert.AlertType.ERROR, "Login Error", null, "Please enter both username and password.");
                 
             } else {
-                if(result.next()){
-                    
+                if(result.next()){                    
                     //IF LOGIN INFO CORRECT, SHOW ALERT===
-                    alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("INFORMATION");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Login Success!!");
-                    alert.showAndWait();
+                    AlertUtils.showAlert(Alert.AlertType.INFORMATION, "INFORMATION", null, "Login Success!!");
                     
                     //CLOSE LOGIN SCREEN==========
                     loginBtn.getScene().getWindow().hide(); 
@@ -91,17 +82,11 @@ public class StartController implements Initializable {
                     windowUtils.loadWindow("/posmanagement/dashboard.fxml", "Dashboard");
 
                 } else {
-                    
                     //IF LOGIN INFO WRONG====
-                    alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("ERROR MESSAGE");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Wrong username or password");
-                    alert.showAndWait();
+                    AlertUtils.showAlert(Alert.AlertType.ERROR, "ERROR MESSAGE", null, "Wrong username or password!");
                     
                 }
             }
-            
             
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error connecting to the database: {0}", e.getMessage());

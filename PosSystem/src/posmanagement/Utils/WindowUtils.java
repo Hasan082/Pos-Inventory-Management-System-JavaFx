@@ -48,10 +48,6 @@ public class WindowUtils {
             // Set the window title
             stage.setTitle(title);
 
-            // Set the controller if needed
-            // MyController controller = loader.getController();
-            // controller.initData(data);
-
             // Open the window
             stage.setScene(scene);
             stage.show();

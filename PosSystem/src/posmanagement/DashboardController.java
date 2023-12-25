@@ -40,6 +40,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import posmanagement.Model.GetData;
 import posmanagement.Model.ProductData;
+import posmanagement.Utils.AlertUtils;
 import posmanagement.Utils.ComboBoxUtils;
 import posmanagement.Utils.WindowUtils;
 
@@ -257,14 +258,8 @@ public class DashboardController implements Initializable {
                 //CLEAR THE FORM AFTER SUBMIT=======
                 resetAddProductForm();
                 
-            } else {
-                
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("ERROR MESSAGE");
-                alert.setHeaderText(null);
-                alert.setContentText("All Field Rquired!");
-                alert.showAndWait();
-                
+            } else {                
+                AlertUtils.showAlert(Alert.AlertType.ERROR, "ERROR MESSAGE", null, "Please fill the form correctly!");
             }
             
             
@@ -404,7 +399,6 @@ public class DashboardController implements Initializable {
         prod_table_status.setCellValueFactory(new PropertyValueFactory<>("status"));
         
         product_show_table.setItems(addProductsList);
-        
         
     }
     
