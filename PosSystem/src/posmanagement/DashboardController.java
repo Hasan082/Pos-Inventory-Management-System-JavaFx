@@ -39,6 +39,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import posmanagement.DatabaseHelper.AddProductToDatabaseClass;
 import posmanagement.Model.GetData;
 import posmanagement.Model.ProductData;
 import posmanagement.Utils.AlertUtils;
@@ -221,53 +222,77 @@ public class DashboardController implements Initializable {
     Image image;
 
     //ADD PRODUCT DATA TO DATABASE======   
-    public void addProductToDataBase(){
-        String sqlInsert = "INSERT INTO productdb (product_id, category, brand, product_name, price, status, image, date) VALUES(?,?,?,?,?,?,?,?)";
-        conn = Connector.connectDb();
-        try {
-            
-            String prod_id = product_id.getText();
-            String prod_cat = (String) product_cat.getSelectionModel().getSelectedItem();
-            String prod_bnd = product_brand.getText();
-            String prod_nm = product_name.getText();
-            String prod_prc = product_price.getText();
-            String prod_sts = (String) product_status.getSelectionModel().getSelectedItem();
-            String uri = GetData.imagePath;
-            if (uri != null) {
-                uri = uri.replace("\\", "\\\\");
-            }            
-            Date date = new Date();
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-            
-            if( !prod_id.isEmpty() && prod_cat != null && !prod_bnd.isEmpty() && !prod_nm.isEmpty() && !prod_prc.isEmpty() && prod_sts != null && GetData.imagePath != null && !GetData.imagePath.isEmpty() ){
-                ps = conn.prepareStatement(sqlInsert);
-            
-                ps.setString(1, prod_id);
-                ps.setString(2, prod_cat);
-                ps.setString(3, prod_bnd);
-                ps.setString(4, prod_nm);
-                ps.setString(5, prod_prc);
-                ps.setString(6, prod_sts);
-                ps.setString(7, uri);          
-                ps.setString(8, String.valueOf(sqlDate));
-                
-                ps.executeUpdate();
-                
-                //UPDATE TABLE DATA WHEN 
-                showProductDataToTable();
-                
-                //CLEAR THE FORM AFTER SUBMIT=======
-                resetAddProductForm();
-                
-            } else {                
-                AlertUtils.showAlert(Alert.AlertType.ERROR, "ERROR MESSAGE", null, "Please fill the form correctly!");
-            }
-            
-            
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error", e);
+    
+    public void addProductToDataBase() {
+        String prodId = product_id.getText();
+        String prodCat = (String) product_cat.getSelectionModel().getSelectedItem();
+        String prodBnd = product_brand.getText();
+        String prodNm = product_name.getText();
+        String prodPrc = product_price.getText();
+        String prodSts = (String) product_status.getSelectionModel().getSelectedItem();
+        String uri = GetData.imagePath;
+
+        boolean isDatabaseOperationSuccessful = AddProductToDatabaseClass.insertProduct(prodId, prodCat, prodBnd, prodNm, prodPrc, prodSts, uri);
+
+        if (isDatabaseOperationSuccessful) {
+            // Perform actions when the database operation is successful
+            showProductDataToTable();
+            resetAddProductForm();
         }
+        // You can add an else block here if you want to perform actions when the operation fails
     }
+
+    
+    
+    
+    
+//    public void addProductToDataBase(){
+//        String sqlInsert = "INSERT INTO productdb (product_id, category, brand, product_name, price, status, image, date) VALUES(?,?,?,?,?,?,?,?)";
+//        conn = Connector.connectDb();
+//        try {
+//            
+//            String prod_id = product_id.getText();
+//            String prod_cat = (String) product_cat.getSelectionModel().getSelectedItem();
+//            String prod_bnd = product_brand.getText();
+//            String prod_nm = product_name.getText();
+//            String prod_prc = product_price.getText();
+//            String prod_sts = (String) product_status.getSelectionModel().getSelectedItem();
+//            String uri = GetData.imagePath;
+//            if (uri != null) {
+//                uri = uri.replace("\\", "\\\\");
+//            }            
+//            Date date = new Date();
+//            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+//            
+//            if( !prod_id.isEmpty() && prod_cat != null && !prod_bnd.isEmpty() && !prod_nm.isEmpty() && !prod_prc.isEmpty() && prod_sts != null && GetData.imagePath != null && !GetData.imagePath.isEmpty() ){
+//                ps = conn.prepareStatement(sqlInsert);
+//            
+//                ps.setString(1, prod_id);
+//                ps.setString(2, prod_cat);
+//                ps.setString(3, prod_bnd);
+//                ps.setString(4, prod_nm);
+//                ps.setString(5, prod_prc);
+//                ps.setString(6, prod_sts);
+//                ps.setString(7, uri);          
+//                ps.setString(8, String.valueOf(sqlDate));
+//                
+//                ps.executeUpdate();
+//                
+//                //UPDATE TABLE DATA WHEN 
+//                showProductDataToTable();
+//                
+//                //CLEAR THE FORM AFTER SUBMIT=======
+//                resetAddProductForm();
+//                
+//            } else {                
+//                AlertUtils.showAlert(Alert.AlertType.ERROR, "ERROR MESSAGE", null, "Please fill the form correctly!");
+//            }
+//            
+//            
+//        } catch (SQLException e) {
+//            logger.log(Level.SEVERE, "Error", e);
+//        }
+//    }
     
     
     public void resetAddProductForm(){
