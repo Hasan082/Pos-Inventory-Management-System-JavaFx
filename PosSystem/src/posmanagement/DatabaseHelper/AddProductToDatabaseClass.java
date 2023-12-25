@@ -18,7 +18,6 @@ public class AddProductToDatabaseClass {
                                         String prodNm, String prodPrc, String prodSts, String uri) {
         Connection conn = Connector.connectDb();
         PreparedStatement ps = null;
-        Alert alert;
 
         String sqlInsert = "INSERT INTO productdb (product_id, category, brand, product_name, price, status, image, date) VALUES(?,?,?,?,?,?,?,?)";
 
@@ -45,18 +44,9 @@ public class AddProductToDatabaseClass {
 
                 int rowsAffected = ps.executeUpdate();
 
-                // You may want to handle the UI updates and alerts in a separate method
-                // showProductDataToTable();
-                // resetAddProductForm();
-
                 return rowsAffected > 0; // Return true if at least one row was affected
             } else {
                 AlertUtils.showAlert(Alert.AlertType.ERROR, "ERROR MESSAGE", null, "Please fill The Form Correctly!");
-//                alert = new Alert(Alert.AlertType.ERROR);
-//                alert.setTitle("ERROR MESSAGE");
-//                alert.setHeaderText(null);
-//                alert.setContentText("All Fields Required!");
-//                alert.showAndWait();
                 return false; // Return false if validation fails
             }
         } catch (SQLException e) {

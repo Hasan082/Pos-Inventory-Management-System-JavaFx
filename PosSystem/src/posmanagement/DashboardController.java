@@ -40,6 +40,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import posmanagement.DatabaseHelper.AddProductToDatabaseClass;
+import posmanagement.DatabaseHelper.ProductDataDAO;
 import posmanagement.Model.GetData;
 import posmanagement.Model.ProductData;
 import posmanagement.Utils.AlertUtils;
@@ -236,65 +237,13 @@ public class DashboardController implements Initializable {
 
         if (isDatabaseOperationSuccessful) {
             // Perform actions when the database operation is successful
+            AlertUtils.showAlert(Alert.AlertType.INFORMATION, "SUCCESS", null, "Data Added Successfully!!");
             showProductDataToTable();
             resetAddProductForm();
         }
-        // You can add an else block here if you want to perform actions when the operation fails
     }
-
     
-    
-    
-    
-//    public void addProductToDataBase(){
-//        String sqlInsert = "INSERT INTO productdb (product_id, category, brand, product_name, price, status, image, date) VALUES(?,?,?,?,?,?,?,?)";
-//        conn = Connector.connectDb();
-//        try {
-//            
-//            String prod_id = product_id.getText();
-//            String prod_cat = (String) product_cat.getSelectionModel().getSelectedItem();
-//            String prod_bnd = product_brand.getText();
-//            String prod_nm = product_name.getText();
-//            String prod_prc = product_price.getText();
-//            String prod_sts = (String) product_status.getSelectionModel().getSelectedItem();
-//            String uri = GetData.imagePath;
-//            if (uri != null) {
-//                uri = uri.replace("\\", "\\\\");
-//            }            
-//            Date date = new Date();
-//            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-//            
-//            if( !prod_id.isEmpty() && prod_cat != null && !prod_bnd.isEmpty() && !prod_nm.isEmpty() && !prod_prc.isEmpty() && prod_sts != null && GetData.imagePath != null && !GetData.imagePath.isEmpty() ){
-//                ps = conn.prepareStatement(sqlInsert);
-//            
-//                ps.setString(1, prod_id);
-//                ps.setString(2, prod_cat);
-//                ps.setString(3, prod_bnd);
-//                ps.setString(4, prod_nm);
-//                ps.setString(5, prod_prc);
-//                ps.setString(6, prod_sts);
-//                ps.setString(7, uri);          
-//                ps.setString(8, String.valueOf(sqlDate));
-//                
-//                ps.executeUpdate();
-//                
-//                //UPDATE TABLE DATA WHEN 
-//                showProductDataToTable();
-//                
-//                //CLEAR THE FORM AFTER SUBMIT=======
-//                resetAddProductForm();
-//                
-//            } else {                
-//                AlertUtils.showAlert(Alert.AlertType.ERROR, "ERROR MESSAGE", null, "Please fill the form correctly!");
-//            }
-//            
-//            
-//        } catch (SQLException e) {
-//            logger.log(Level.SEVERE, "Error", e);
-//        }
-//    }
-    
-    
+    //RESET FORM METHOD===============
     public void resetAddProductForm(){
         
         product_id.setText("");
@@ -307,13 +256,12 @@ public class DashboardController implements Initializable {
         GetData.imagePath = "";
         
     }
-    
-    
-    //CREATE CATEGORY LIST ITEMS=============
-    
+
+    //CREATE CATEGORY LIST ITEMS=============    
     private final String[] catList = {"Snacks", "Drinks", "Dessert", "Gadget", "Personal Product", "Clothing", "Electronics", "Books", "Furniture", "Sports", "Others"};
     
     public void addCategoryList(){
+        
         List<String> catArr = new ArrayList<>();
         
         if (catList != null && catList.length > 0) {
@@ -322,15 +270,15 @@ public class DashboardController implements Initializable {
             product_cat.setItems(obsCatList);
             product_cat.setButtonCell(new ComboBoxUtils<>("Choose one"));
         }
-        
     }
     
     
     //CREATE STATUS LIST ITEMS=============
     
-    private final String[] statusList = {"Available", "Sold Out", "Not in Store", "Up Comming"};
+    private final String[] statusList = {"Available", "Sold Out", "New"};
     
     public void addStatusList(){
+        
         List<String> statusArr = new ArrayList<>();
         
         if (statusList != null && statusList.length > 0) {
@@ -339,11 +287,7 @@ public class DashboardController implements Initializable {
             product_status.setItems(obsStsList);
             product_status.setButtonCell(new ComboBoxUtils<>("Choose one"));
         }
-
-        
-        
     }
-    
     
     //IMAGE IMPORT AND SET FUNCTION============
     public void importProductImage(){
@@ -358,64 +302,21 @@ public class DashboardController implements Initializable {
             
             GetData.imagePath = file.getAbsolutePath();
             
-            
             try {
                 image = new Image(file.toURI().toString(), 130, 150, false, true);
                 product_img.setImage(image);
                 } catch (Exception e) {
                     logger.log(Level.SEVERE, "", e);
                 }
-
             }
-
     }
-    
-
-    
-    public ObservableList<ProductData> addProductListData(){
-        ObservableList<ProductData> productList = FXCollections.observableArrayList();
-        
-        String sql = "SELECT * FROM productdb";
-        conn = Connector.connectDb();
-        try {
-            ps = conn.prepareStatement(sql);            
-            result = ps.executeQuery();
-            
-            //CREATE A OBJECT FROM PRODUCT DATA MODEL CLASS
-            ProductData productD;
-            
-            while (result.next()) {
-                productD = new ProductData(
-                    result.getInt("product_id"), 
-                    result.getString("category"), 
-                    result.getString("brand"),
-                    result.getString("product_name"),
-                    result.getDouble("price"),
-                    result.getString("status"), 
-                    result.getString("image"), 
-                    result.getDate("date")
-                );
-                
-                //ADD PRODUCT TO PRODUCTLIST ARRAY=====
-                productList.add(productD);
-            }
-            
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Erorr is:", e);
-        }
-        
-        return productList;
-        
-    }
-    
     
     //CREATE INSTANCE FOR ObservableList SHOW DATA===============
-    
     private ObservableList<ProductData> addProductsList;
     
     public void showProductDataToTable(){
         //ADD PRODUCT ARRAY LIST TO THE INSTANCE=================
-        addProductsList = addProductListData();
+        addProductsList = ProductDataDAO.getProductListData();
         //ADD DATA TO THE RESPECTIVE TABLE CELL============
         prod_table_id.setCellValueFactory(new PropertyValueFactory<>("product_id"));
         prod_table_cat.setCellValueFactory(new PropertyValueFactory<>("category"));
@@ -444,7 +345,7 @@ public class DashboardController implements Initializable {
     //LOGOUT FUNCTION=====
     public void logout(){
         //IF LOGIN INFO CORRECT, SHOW ALERT===
-        alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("CONFIRMATION");
         alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to log out?");
@@ -461,10 +362,7 @@ public class DashboardController implements Initializable {
         }
     }
     
-    
-    
-    
-    
+
     //SCREEN SWITCHER FUNCTION=================================
     public void switchScreen(ActionEvent evt){
         if(evt.getSource() == nav_dash){

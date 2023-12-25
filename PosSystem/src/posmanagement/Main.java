@@ -15,7 +15,7 @@ public class Main extends Application {
         
         //OPEN NEW WINDOW ===========
         WindowUtils windowUtils = new WindowUtils();
-        windowUtils.loadWindow("/posmanagement/Start.fxml", "Dashboard");
+        windowUtils.loadWindow("/posmanagement/Start.fxml", "Login");
 
     }
 
