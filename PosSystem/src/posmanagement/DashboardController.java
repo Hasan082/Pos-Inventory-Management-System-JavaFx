@@ -3,8 +3,16 @@ package posmanagement;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,14 +26,17 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import posmanagement.Model.ProductData;
 import posmanagement.Utils.WindowUtils;
 
 
 public class DashboardController implements Initializable {  
     
+    private static final Logger logger = Logger.getLogger(DashboardController.class.getName());
 
     @FXML
     private Button close;
@@ -124,22 +135,22 @@ public class DashboardController implements Initializable {
     private Button prod_reset_btn;
 
     @FXML
-    private TableColumn<?, ?> prod_table_brand;
+    private TableColumn<ProductData, String> prod_table_brand;
 
     @FXML
-    private TableColumn<?, ?> prod_table_cat;
+    private TableColumn<ProductData, String> prod_table_cat;
 
     @FXML
-    private TableColumn<?, ?> prod_table_id;
+    private TableColumn<ProductData, String> prod_table_id;
 
     @FXML
-    private TableColumn<?, ?> prod_table_name;
+    private TableColumn<ProductData, String> prod_table_name;
 
     @FXML
-    private TableColumn<?, ?> prod_table_price;
+    private TableColumn<ProductData, String> prod_table_price;
 
     @FXML
-    private TableColumn<?, ?> prod_table_status;
+    private TableColumn<ProductData, String> prod_table_status;
 
     @FXML
     private Button prod_update_btn;
@@ -166,7 +177,7 @@ public class DashboardController implements Initializable {
     private TextField product_search;
 
     @FXML
-    private TableView<?> product_show_table;
+    private TableView<ProductData> product_show_table;
 
     @FXML
     private ComboBox<?> product_status;
@@ -189,6 +200,70 @@ public class DashboardController implements Initializable {
     //ALert Variable =======================
     Alert alert;
 
+ 
+    
+    //OBERSRVALE PRODUCT DATA LIST=========
+    private Connection conn;
+    private PreparedStatement ps;
+    ResultSet result;
+
+    
+    public ObservableList<ProductData> addProductListData(){
+        ObservableList<ProductData> productList = FXCollections.observableArrayList();
+        
+        String sql = "SELECT * FROM productdb";
+        conn = Connector.connectDb();
+        try {
+            ps = conn.prepareStatement(sql);            
+            result = ps.executeQuery();
+            
+            //CREATE A OBJECT FROM PRODUCT DATA MODEL CLASS
+            ProductData productD;
+            
+            while (result.next()) {
+                productD = new ProductData(
+                    result.getInt("product_id"), 
+                    result.getString("category"), 
+                    result.getString("brand"),
+                    result.getString("product_name"),
+                    result.getDouble("price"),
+                    result.getString("status"), 
+                    result.getString("image"), 
+                    result.getDate("date")
+                );
+                
+                //ADD PRODUCT TO PRODUCTLIST ARRAY=====
+                productList.add(productD);
+            }
+            
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Erorr is:", e);
+        }
+        
+        return productList;
+        
+    }
+    
+    
+    //CREATE INSTANCE FOR ObservableList SHOW DATA===============
+    
+    private ObservableList<ProductData> addProductsList;
+    
+    public void showProductDataToTable(){
+        //ADD PRODUCT ARRAY LIST TO THE INSTANCE=================
+        addProductsList = addProductListData();
+        //ADD DATA TO THE RESPECTIVE TABLE CELL============
+        prod_table_id.setCellValueFactory(new PropertyValueFactory<>("product_id"));
+        prod_table_cat.setCellValueFactory(new PropertyValueFactory<>("category"));
+        prod_table_brand.setCellValueFactory(new PropertyValueFactory<>("brand"));
+        prod_table_name.setCellValueFactory(new PropertyValueFactory<>("product_name"));
+        prod_table_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        prod_table_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        
+        product_show_table.setItems(addProductsList);
+    }
+    
+    
     
     //CLOSE FUNCTION======
     public  void  close() {
@@ -221,9 +296,14 @@ public class DashboardController implements Initializable {
         }
     }
     
+    
+    
+    
+    
     //SCREEN SWITCHER FUNCTION=================================
     public void switchScreen(ActionEvent evt){
         if(evt.getSource() == nav_dash){
+            //SET VISIBLE AND HIDDEN
             section_dashboard.setVisible(true);
             section_addProduct.setVisible(false);
             section_order.setVisible(false);
@@ -235,6 +315,7 @@ public class DashboardController implements Initializable {
             nav_order.setStyle("-fx-background-color: transparent");
             
         }else if(evt.getSource() == nav_add_prod) {
+            //SET VISIBLE AND HIDDEN
             section_addProduct.setVisible(true);
             section_dashboard.setVisible(false);            
             section_order.setVisible(false);
@@ -245,7 +326,11 @@ public class DashboardController implements Initializable {
             nav_dash.setStyle("-fx-background-color: transparent");
             nav_order.setStyle("-fx-background-color: transparent");
             
+            //CALL THE METHOD FOPR SHOW DATA TO TABLE=======
+            showProductDataToTable();
+            
         }else if(evt.getSource() == nav_order) {
+            //SET VISIBLE AND HIDDEN
             section_order.setVisible(true);
             section_addProduct.setVisible(false);
             section_dashboard.setVisible(false);
@@ -261,7 +346,10 @@ public class DashboardController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        //CALL THE METHOD FOPR SHOW DATA TO TABLE=======
+        showProductDataToTable();
+        
     }    
     
 }
