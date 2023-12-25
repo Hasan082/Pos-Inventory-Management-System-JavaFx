@@ -2,6 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.lang.String?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -240,7 +241,10 @@
                                  <children>
                                     <AnchorPane layoutX="78.0" layoutY="19.0" prefHeight="150.0" prefWidth="130.0" stylesheets="@dashboard.css">
                                        <children>
-                                          <ImageView fx:id="product_img" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="product_img" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport></ImageView>
                                           <Button fx:id="import_img" layoutY="125.0" mnemonicParsing="false" onAction="#importProductImage" prefHeight="25.0" prefWidth="130.0" styleClass="import-btn" stylesheets="@dashboard.css" text="Import">
                                              <font>
                                                 <Font name="Avenir Next Regular" size="14.0" />
@@ -262,7 +266,7 @@
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="product_cat" focusTraversable="false" layoutX="115.0" layoutY="236.0" prefHeight="25.0" prefWidth="172.0" promptText="Selecy Category" styleClass="textfiled" stylesheets="@dashboard.css" />
+                                    <ComboBox fx:id="product_cat" focusTraversable="false" layoutX="115.0" layoutY="236.0" onAction="#addCategoryList" prefHeight="25.0" prefWidth="172.0" promptText="Selecy a Category" styleClass="textfiled" stylesheets="@dashboard.css" />
                                     <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="280.0" prefHeight="20.0" prefWidth="89.0" text="Brand:">
                                        <font>
                                           <Font name="Avenir Next Regular" size="14.0" />
@@ -280,10 +284,10 @@
                                           <Font name="Avenir Next Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="product_status" focusTraversable="false" layoutX="114.0" layoutY="357.0" prefHeight="25.0" prefWidth="172.0" promptText="Choose" styleClass="textfiled" stylesheets="@dashboard.css" />
-                                    <Button fx:id="prod_add_btn" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" styleClass="design-btn" stylesheets="@dashboard.css" text="ADD" />
+                                    <ComboBox fx:id="product_status" focusTraversable="false" layoutX="114.0" layoutY="357.0" onAction="#addStatusList" prefHeight="25.0" prefWidth="172.0" promptText="Choose one" styleClass="textfiled" stylesheets="@dashboard.css" />
+                                    <Button fx:id="prod_add_btn" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" onAction="#addProductToDataBase" prefHeight="45.0" prefWidth="127.0" styleClass="design-btn" stylesheets="@dashboard.css" text="ADD" />
                                     <Button fx:id="prod_update_btn" layoutX="159.0" layoutY="456.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" styleClass="design-btn" stylesheets="@dashboard.css" text="UPDATE" />
-                                    <Button fx:id="prod_reset_btn" layoutX="14.0" layoutY="520.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" styleClass="design-btn" stylesheets="@dashboard.css" text="RESET" />
+                                    <Button fx:id="prod_reset_btn" layoutX="14.0" layoutY="520.0" mnemonicParsing="false" onAction="#resetAddProductForm" prefHeight="45.0" prefWidth="127.0" styleClass="design-btn" stylesheets="@dashboard.css" text="RESET" />
                                     <Button fx:id="prod_detete_btn" layoutX="159.0" layoutY="520.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" styleClass="design-btn" stylesheets="@dashboard.css" text="DELTE" />
                                     <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="400.0" prefHeight="20.0" prefWidth="89.0" text="Price:">
                                        <font>

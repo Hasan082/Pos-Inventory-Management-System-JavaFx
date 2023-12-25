@@ -1,7 +1,6 @@
 
 package posmanagement.Model;
-
-//product_id category brand product_name price status image date	
+	
 
 import java.sql.*;
 

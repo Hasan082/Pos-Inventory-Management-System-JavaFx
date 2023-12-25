@@ -8,6 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -36,7 +40,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import posmanagement.Model.GetData;
 import posmanagement.Model.ProductData;
-import posmanagement.Utils.ImageCropUtils;
+import posmanagement.Utils.ComboBoxUtils;
 import posmanagement.Utils.WindowUtils;
 
 
@@ -216,8 +220,109 @@ public class DashboardController implements Initializable {
 
     //ADD PRODUCT DATA TO DATABASE======   
     public void addProductToDataBase(){
-        String sqlInsert = "INSERT INTO productdb (product_id, category, brand, product_name, price, status, image, date)";
+        String sqlInsert = "INSERT INTO productdb (product_id, category, brand, product_name, price, status, image, date) VALUES(?,?,?,?,?,?,?,?)";
+        conn = Connector.connectDb();
+        try {
+            
+            String prod_id = product_id.getText();
+            String prod_cat = (String) product_cat.getSelectionModel().getSelectedItem();
+            String prod_bnd = product_brand.getText();
+            String prod_nm = product_name.getText();
+            String prod_prc = product_price.getText();
+            String prod_sts = (String) product_status.getSelectionModel().getSelectedItem();
+            String uri = GetData.imagePath;
+            if (uri != null) {
+                uri = uri.replace("\\", "\\\\");
+            }            
+            Date date = new Date();
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            
+            if( !prod_id.isEmpty() && prod_cat != null && !prod_bnd.isEmpty() && !prod_nm.isEmpty() && !prod_prc.isEmpty() && prod_sts != null && GetData.imagePath != null && !GetData.imagePath.isEmpty() ){
+                ps = conn.prepareStatement(sqlInsert);
+            
+                ps.setString(1, prod_id);
+                ps.setString(2, prod_cat);
+                ps.setString(3, prod_bnd);
+                ps.setString(4, prod_nm);
+                ps.setString(5, prod_prc);
+                ps.setString(6, prod_sts);
+                ps.setString(7, uri);          
+                ps.setString(8, String.valueOf(sqlDate));
+                
+                ps.executeUpdate();
+                
+                //UPDATE TABLE DATA WHEN 
+                showProductDataToTable();
+                
+                //CLEAR THE FORM AFTER SUBMIT=======
+                resetAddProductForm();
+                
+            } else {
+                
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("ERROR MESSAGE");
+                alert.setHeaderText(null);
+                alert.setContentText("All Field Rquired!");
+                alert.showAndWait();
+                
+            }
+            
+            
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Error", e);
+        }
     }
+    
+    
+    public void resetAddProductForm(){
+        
+        product_id.setText("");
+        product_cat.getSelectionModel().clearSelection();
+        product_brand.setText("");
+        product_name.setText("");
+        product_price.setText("");
+        product_status.getSelectionModel().clearSelection();
+        product_img.setImage(null);
+        GetData.imagePath = "";
+        
+    }
+    
+    
+    //CREATE CATEGORY LIST ITEMS=============
+    
+    private final String[] catList = {"Snacks", "Drinks", "Dessert", "Gadget", "Personal Product", "Clothing", "Electronics", "Books", "Furniture", "Sports", "Others"};
+    
+    public void addCategoryList(){
+        List<String> catArr = new ArrayList<>();
+        
+        if (catList != null && catList.length > 0) {
+            catArr.addAll(Arrays.asList(catList));
+            ObservableList obsCatList = FXCollections.observableArrayList(catArr);
+            product_cat.setItems(obsCatList);
+            product_cat.setButtonCell(new ComboBoxUtils<>("Choose one"));
+        }
+        
+    }
+    
+    
+    //CREATE STATUS LIST ITEMS=============
+    
+    private final String[] statusList = {"Available", "Sold Out", "Not in Store", "Up Comming"};
+    
+    public void addStatusList(){
+        List<String> statusArr = new ArrayList<>();
+        
+        if (statusList != null && statusList.length > 0) {
+            statusArr.addAll(Arrays.asList(statusList));
+            ObservableList obsStsList = FXCollections.observableArrayList(statusArr);
+            product_status.setItems(obsStsList);
+            product_status.setButtonCell(new ComboBoxUtils<>("Choose one"));
+        }
+
+        
+        
+    }
+    
     
     //IMAGE IMPORT AND SET FUNCTION============
     public void importProductImage(){
@@ -236,7 +341,6 @@ public class DashboardController implements Initializable {
             try {
                 image = new Image(file.toURI().toString(), 130, 150, false, true);
                 product_img.setImage(image);
-//                ImageCropUtils.resizeAndCropImage(product_img, image, 130, 150);
                 } catch (Exception e) {
                     logger.log(Level.SEVERE, "", e);
                 }
@@ -300,6 +404,8 @@ public class DashboardController implements Initializable {
         prod_table_status.setCellValueFactory(new PropertyValueFactory<>("status"));
         
         product_show_table.setItems(addProductsList);
+        
+        
     }
     
     
@@ -365,6 +471,11 @@ public class DashboardController implements Initializable {
             nav_dash.setStyle("-fx-background-color: transparent");
             nav_order.setStyle("-fx-background-color: transparent");
             
+ 
+            //CATERGORY LIST and STATUS LIST
+            addCategoryList();
+            addStatusList();
+            
             //CALL THE METHOD FOPR SHOW DATA TO TABLE=======
             showProductDataToTable();
             
@@ -388,6 +499,8 @@ public class DashboardController implements Initializable {
         
         //CALL THE METHOD FOPR SHOW DATA TO TABLE=======
         showProductDataToTable();
+        addCategoryList();
+        addStatusList();
         
     }    
     

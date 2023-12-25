@@ -1,4 +1,3 @@
-
 module PosSystem {
     requires javafx.base;
     requires javafx.controls;
@@ -12,8 +11,7 @@ module PosSystem {
     requires java.logging;
     requires java.desktop;
 
-    
     opens posmanagement to javafx.fxml;
-    
+    opens posmanagement.Model to javafx.base; 
     exports posmanagement;
 }
